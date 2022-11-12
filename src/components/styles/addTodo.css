@@ -1,0 +1,73 @@
+.add__todo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+}
+
+.input__container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+.new__todo--field {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.new__todo__label {
+  width: 33.3%;
+}
+
+.new__todo__input {
+  width: 66.6%;
+}
+
+.btn--add__todo {
+  color: #fff;
+  background: #ff9900;
+  align-self: stretch;
+}
+
+
+@media screen and (min-width: 960px) {
+  .add__todo {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .input__container {
+    width: 70%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+  }
+
+  .new__todo--field {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .new__todo__label {
+    width: 100%;
+  }
+
+  .new__todo__input {
+    width: 100%;
+  }
+
+  .btn--add__todo {
+    align-self: flex-end;
+  }
+
+}

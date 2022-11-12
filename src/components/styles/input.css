@@ -1,0 +1,17 @@
+.label {
+  color: white;
+}
+
+.input {
+  background: #f5f6f7;
+  padding: 8px 16px;
+  border: 1px solid #ff9900;
+  outline: 1px solid #ff9900;
+  border-radius: 10px;
+}
+
+input:focus{
+  border: 1px solid #ff9900;
+  outline: 1px solid #ff9900;
+}
+

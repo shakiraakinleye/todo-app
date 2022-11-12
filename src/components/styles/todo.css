@@ -1,0 +1,76 @@
+.todo__container {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  background: #444;
+  border-radius: 10px;
+  border-bottom: 1px solid #333333;
+}
+
+.edit__todo, .todo {
+  display: flex;
+  gap: 4px;
+  max-width: 70%;
+} 
+
+.edit__todo {
+  flex-direction: column;
+}
+
+.todo {
+  align-items: flex-start;
+}
+
+.todo__details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 100%;
+} 
+
+/* hsjbdugfsgunxnjxjjzjjzjjzjzjjzj/jbbhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh */
+/* Fix overflowing title and desc */
+/* fix checkbox size when title and desc overflows */
+.todo__checkbox {
+  width: 20px;
+  height: 20px;
+}
+
+.todo__title {
+  font-size: 24px;
+  color: #ff9900;
+  max-width: 100%;
+  overflow-wrap: normal;
+}
+
+.todo__desc {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.btns__container{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn--save__todo, .btn--edit__todo{
+ border: 1px solid #00aa69;
+  color: #00aa69;
+}
+
+.btn--delete__todo {
+  border: 1px solid #ca0000;
+  color: #ca0000;
+}
+
+
+@media screen and (min-width: 960px) {
+  .btns__container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+}
