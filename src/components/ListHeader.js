@@ -1,22 +1,10 @@
 import { AddTodo } from "./AddTodo";
 import "./styles/listHeader.css";
 
-export function ListHeader({
-  titleChangeHandler,
-  descChangeHandler,
-  addBtnHandler,
-  newTodo,
-}) {
+export function ListHeader() {
   return (
     <div className="list__header">
-      {/* <div className="panel__add__content"> */}
-        <AddTodo
-          onTitleChange={titleChangeHandler}
-          onDescChange={descChangeHandler}
-          onClickAddBtn={addBtnHandler}
-          newTodo={newTodo}
-        />
-      {/* </div> */}
+      <AddTodo />
     </div>
   );
 }

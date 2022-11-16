@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { useReducer } from "react";
 import { ListHeader } from "./components/ListHeader";
 import { TodoList } from "./components/TodoList";
-import { TodoReducer } from "./TodoReducer";
+import { NewTodoContext, NewTodoDispatchContext, TodoListContext, TodoDispatchContext, TodoReducer, NewTodoReducer } from "./TodoContext";
 import "./App.css"
 
-let nextId = 3;
 
 const initialTodo = {
   title: "",
@@ -20,72 +18,30 @@ const initialList = [
 
 
 export function App() {
-
-  const [todoList, dispatch] = useReducer(TodoReducer, initialList);
-  const [newTodo, setNewTodo] = useState(initialTodo);
-
-
-  function newTitleHandler(e) {
-    setNewTodo({
-      ...newTodo,
-      title: e.target.value,
-    });
-  }
-
-  function newDescHandler(e) {
-    setNewTodo({
-      ...newTodo,
-      desc: e.target.value,
-    });
-  }
-
-  function addBtnHandler() {
-    dispatch({
-      type: "added",
-      id: nextId++,
-      title: newTodo.title,
-      desc: newTodo.desc,
-    })
-    setNewTodo(initialTodo);
-  }
-  
-  function editTodoHandler(editedTodo) {
-    dispatch({
-      type: "edited",
-      todo: editedTodo,
-      id: editedTodo.id,
-    })
-  }
-  
-  function deleteBtnHandler(todoId) {
-    dispatch({
-      type: "deleted",
-      id: todoId,
-    })
-  }
+  const [todoList, dispatchTodo] = useReducer(TodoReducer, initialList);
+  const [newTodo, dispatchNewTodo] = useReducer(NewTodoReducer, initialTodo);
 
   
   return (
-    <div className="app">
-      <div className="app__container">
-        <div className="app__content">
-          <h1 className="app__title">My Todos</h1>
-          <div className="app__body">
-            <ListHeader
-              titleChangeHandler={newTitleHandler}
-              descChangeHandler={newDescHandler}
-              addBtnHandler={addBtnHandler}
-              newTodo={newTodo}
-            />
-            <TodoList
-              todoList={todoList}
-              onDeleteTodo={deleteBtnHandler}
-              onEditTodo={editTodoHandler}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+    <TodoListContext.Provider value={todoList}>
+      <NewTodoContext.Provider value={newTodo}>
+        <NewTodoDispatchContext.Provider value={dispatchNewTodo}>
+          <TodoDispatchContext.Provider value={dispatchTodo}>
+            <div className="app">
+              <div className="app__container">
+                <div className="app__content">
+                  <h1 className="app__title">My Todos</h1>
+                  <div className="app__body">
+                    <ListHeader />
+                    <TodoList />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </TodoDispatchContext.Provider>
+        </NewTodoDispatchContext.Provider>
+      </NewTodoContext.Provider>
+    </TodoListContext.Provider>
   );
 }
 

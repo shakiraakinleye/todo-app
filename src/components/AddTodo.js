@@ -1,11 +1,17 @@
+import { useContext } from "react";
+import { NewTodoContext, NewTodoDispatchContext, TodoDispatchContext } from "../TodoContext";
 import { Input } from "./Input";
 import { Button } from "./Button";
 import "./styles/addTodo.css";
 
-export function AddTodo({ onTitleChange, onDescChange, onClickAddBtn, newTodo }) {
+export function AddTodo() {
+  const dispatchTodo = useContext(TodoDispatchContext);
+  const dispatchNewTodo = useContext(NewTodoDispatchContext);
+  const newTodo = useContext(NewTodoContext)
+
   return (
     <div className="add__todo">
-      <div className="input__container">
+      <form className="todo__form">
         <Input
           fieldClass={"new__todo--field"}
           labelClass={"new__todo__label"}
@@ -14,8 +20,12 @@ export function AddTodo({ onTitleChange, onDescChange, onClickAddBtn, newTodo })
           inputId={"new__todo--title"}
           inputHint={"Type a task"}
           value={newTodo.title}
-          onChange={onTitleChange}
-          on
+          onChange={(e) => {
+            dispatchNewTodo({
+              type: "added--title",
+              title: e.target.value,
+            });
+          }}
         />
         <Input
           fieldClass={"new__todo--field"}
@@ -25,13 +35,27 @@ export function AddTodo({ onTitleChange, onDescChange, onClickAddBtn, newTodo })
           inputId={"new__todo--desc"}
           inputHint={"Type a description"}
           value={newTodo.desc}
-          onChange={onDescChange}
+          onChange={(e) => {
+            dispatchNewTodo({
+              type: "added--desc",
+              desc: e.target.value,
+            });
+          }}
         />
-      </div>
+      </form>
       <Button
         buttonClass={"btn--add__todo"}
         buttonText={"Add Todo"}
-        onClick={onClickAddBtn}
+        onClick={() => {
+          dispatchTodo({
+            type: "added",
+            title: newTodo.title,
+            desc: newTodo.desc,
+          })
+          dispatchNewTodo({
+            type: "reset"
+          });
+        }}
       />
     </div>
   );

@@ -1,36 +1,42 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import {TodoDispatchContext} from "../TodoContext"
 import { Input } from "./Input";
 import { Button } from "./Button";
 import "./styles/todo.css"
 
 export function Todo({
-  todo,
-  onDeleteTodo,
-  onEditTodo
+  todo
 }) {
   const [isEditing, setIsEditing] = useState(false);
+  const dispatchTodo = useContext(TodoDispatchContext)
 
   return (
     <div className="todo__container">
       {isEditing ? (
         <div className="edit__todo">
           <Input
-            // inputClass={"edit__todo__input"}
             value={todo.title}
             onChange={(e) =>
-              onEditTodo({
-                ...todo,
-                title: e.target.value,
+              dispatchTodo({
+                type: "edited",
+                id: todo.id,
+                todo: {
+                  ...todo,
+                  title: e.target.value,
+                }
               })
             }
           />
           <Input
-            // inputClass={"edit__todo__input"}
             value={todo.desc}
             onChange={(e) =>
-              onEditTodo({
-                ...todo,
-                desc: e.target.value,
+              dispatchTodo({
+                type: "edited",
+                id: todo.id,
+                todo: {
+                  ...todo,
+                  desc: e.target.value
+                }
               })
             }
           />
@@ -41,12 +47,15 @@ export function Todo({
             type="checkbox"
             className="todo__checkbox"
             defaultChecked={todo.done}
-            onChange={(e) => {
-              onEditTodo({
-                ...todo,
-                done: !todo.done,
-              });
-              console.log(!todo.done);
+            onChange={() => {
+              dispatchTodo({
+                type: "edited",
+                id: todo.id,
+                todo: {
+                  ...todo,
+                  done: !todo.done
+                }
+              })
             }}
           ></input>
           <div className="todo__details">
@@ -78,7 +87,12 @@ export function Todo({
         <Button
           buttonClass={"btn--delete__todo"}
           buttonText={"Delete"}
-          onClick={() => onDeleteTodo(todo.id)}
+          onClick={() => {
+            dispatchTodo({
+              type: "deleted",
+              id: todo.id,
+            })
+          }}
         />
       </div>
     </div>

@@ -1,20 +1,16 @@
+import { useContext } from "react";
 import { Todo } from "./Todo"
+import {TodoListContext} from "../TodoContext"
 import "./styles/todoList.css";
 
-export function TodoList({
-  todoList,
-  onEditTodo,
-  onDeleteTodo
-}) {
+export function TodoList() {
   function List() {
+    const todoList = useContext(TodoListContext)
+
     const listItems = todoList.map((todo) => {
       return (
         <li key={todo.id}>
-          <Todo
-            todo={todo}
-            onEditTodo={onEditTodo}
-            onDeleteTodo={onDeleteTodo}
-          />
+          <Todo todo={todo} />
         </li>
       );
     });
