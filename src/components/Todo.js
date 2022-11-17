@@ -25,6 +25,11 @@ export function Todo({
             }
           })
         }
+        onKeyDown={(e) => {
+          if (e.key === "Enter"){
+            setIsEditing(false);
+          }
+        }}
       />
       <Input
         inputClass="edit__todo__input"
@@ -39,6 +44,11 @@ export function Todo({
             }
           })
         }
+        onKeyDown={(e) => {
+          if (e.key === "Enter"){
+            setIsEditing(false);
+          }
+        }}
       />
     </div>
   ) : (
@@ -82,8 +92,6 @@ export function Todo({
       }}
     />
   )
-
-  // fix: Input loses focus during edit
 
   return (
     <div className="todo__container">
