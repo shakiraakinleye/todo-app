@@ -1,11 +1,41 @@
-import { createContext } from "react";
+import { createContext, useReducer } from "react";
+import {DisplayError} from "./components/DisplayError"
 
 let nextId = 3;
+
+const initialTodo = {
+    title: "",
+    desc: "",
+  };
+  
+const initialList = [
+    { id: 0, title: "Wash car", desc: "Have the engine cleaned", done: false },
+    { id: 1, title: "Hair Salon", desc: "Make braids", done: true },
+    { id: 2, title: "Grocery shopping", desc: "Get greek yogurt", done: false },
+];
+  
 
 export const NewTodoContext = createContext(null)
 export const TodoListContext = createContext(null)
 export const TodoDispatchContext = createContext(null)
 export const NewTodoDispatchContext = createContext(null)
+
+
+export function TodoProvider ({children}){
+    const [todoList, dispatchTodo] = useReducer(TodoReducer, initialList);
+  const [newTodo, dispatchNewTodo] = useReducer(NewTodoReducer, initialTodo);
+    return(
+        <TodoListContext.Provider value={todoList}>
+            <TodoDispatchContext.Provider value={dispatchTodo}>
+                <NewTodoContext.Provider value={newTodo}>
+                    <NewTodoDispatchContext.Provider value={dispatchNewTodo}>
+                        {children}
+                    </NewTodoDispatchContext.Provider>
+                </NewTodoContext.Provider>
+            </TodoDispatchContext.Provider>
+        </TodoListContext.Provider>
+    )
+}
 
 
 export function TodoReducer(todoList, action){
@@ -34,6 +64,10 @@ export function TodoReducer(todoList, action){
         }
         case "deleted" : {
             return todoList.filter((todo) => todo.id !== action.id)
+        }
+        case "error" : {
+         // fix: display error when user attempts to add todo without a title
+           return <DisplayError  err={action.error} />
         }
         default : {
             throw Error(`${action.type} is not a valid action`)
