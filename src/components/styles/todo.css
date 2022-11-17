@@ -54,6 +54,11 @@
   flex-wrap: wrap;
 }
 
+.checked {
+  text-decoration: line-through;
+  color: #777;
+}
+
 /* Buttons */
 .btns__container{
   display: flex;

@@ -59,8 +59,8 @@ export function Todo({
         }}
       ></input>
       <div className="todo__details">
-        <h1 className="todo__title">{todo.title}</h1>
-        <p className="todo__desc">{todo.desc}</p>
+        <h1 className={todo.done ? "todo__title checked" : "todo__title"}>{todo.title}</h1>
+        <p className={todo.done ? "todo__desc checked" : "todo__desc"}>{todo.desc}</p>
       </div>
     </div>
   )
@@ -83,6 +83,7 @@ export function Todo({
     />
   )
 
+  // fix: Input loses focus during edit
 
   return (
     <div className="todo__container">
