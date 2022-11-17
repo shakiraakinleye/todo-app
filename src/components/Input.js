@@ -9,6 +9,7 @@ export function Input({
   inputHint = "",
   onChange = "",
   value,
+  onKeyDown
 }) {
   return (
     <div className={fieldClass}>
@@ -22,6 +23,7 @@ export function Input({
         className={"input " + inputClass}
         placeholder={inputHint}
         onChange={onChange}
+        onKeyDown={onKeyDown}
       />
     </div>
   );

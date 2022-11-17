@@ -26,6 +26,18 @@ export function AddTodo() {
               title: e.target.value,
             });
           }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter"){
+              dispatchTodo({
+                type: "added",
+                title: newTodo.title,
+                desc: newTodo.desc,
+              })
+              dispatchNewTodo({
+                type: "reset"
+              });
+            }
+          }}
         />
         <Input
           fieldClass={"new__todo--field"}
@@ -40,6 +52,18 @@ export function AddTodo() {
               type: "added--desc",
               desc: e.target.value,
             });
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter"){
+              dispatchTodo({
+                type: "added",
+                title: newTodo.title,
+                desc: newTodo.desc,
+              })
+              dispatchNewTodo({
+                type: "reset"
+              });
+            }
           }}
         />
       </form>
