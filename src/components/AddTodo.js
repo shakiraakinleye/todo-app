@@ -13,11 +13,11 @@ export function AddTodo() {
     <div className="add__todo">
       <form className="todo__form">
         <Input
-          fieldClass={"new__todo--field"}
-          labelClass={"new__todo__label"}
+          fieldClass={"new__todo__field"}
+          labelClass={"new__todo__label new__todo__title__label"}
           labelText={"Title"}
           inputClass={"new__todo__input"}
-          inputId={"new__todo--title"}
+          inputId={"new__todo__title"}
           inputHint={"Type a task"}
           value={newTodo.title}
           onChange={(e) => {
@@ -42,11 +42,11 @@ export function AddTodo() {
           }}
         />
         <Input
-          fieldClass={"new__todo--field"}
+          fieldClass={"new__todo__field"}
           labelClass={"new__todo__label"}
           labelText={"Description"}
           inputClass={"new__todo__input"}
-          inputId={"new__todo--desc"}
+          inputId={"new__todo__desc"}
           inputHint={"Type a description"}
           value={newTodo.desc}
           onChange={(e) => {
@@ -85,13 +85,6 @@ export function AddTodo() {
               type: "reset"
             });
           }
-          // fix: display error when user attempts to add todo without a title
-          // else {
-          //   dispatchTodo({
-          //     type: "error",
-          //     err: "No title added",
-          //   })
-          // }
         }}
       />
     </div>
