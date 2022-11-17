@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-import {DisplayError} from "./components/DisplayError"
+// import {DisplayError} from "./components/DisplayError"
 
 let nextId = 3;
 
@@ -65,10 +65,10 @@ export function TodoReducer(todoList, action){
         case "deleted" : {
             return todoList.filter((todo) => todo.id !== action.id)
         }
-        case "error" : {
+        // case "error" : {
          // fix: display error when user attempts to add todo without a title
-           return <DisplayError  err={action.error} />
-        }
+        //    return <DisplayError  err={action.error} />
+        // }
         default : {
             throw Error(`${action.type} is not a valid action`)
         }
