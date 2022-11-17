@@ -28,14 +28,16 @@ export function AddTodo() {
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter"){
-              dispatchTodo({
-                type: "added",
-                title: newTodo.title,
-                desc: newTodo.desc,
-              })
-              dispatchNewTodo({
-                type: "reset"
-              });
+              if (newTodo.title !== "") {
+                dispatchTodo({
+                  type: "added",
+                  title: newTodo.title,
+                  desc: newTodo.desc,
+                })
+                dispatchNewTodo({
+                  type: "reset"
+                });
+              }
             }
           }}
         />
@@ -55,14 +57,16 @@ export function AddTodo() {
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter"){
-              dispatchTodo({
-                type: "added",
-                title: newTodo.title,
-                desc: newTodo.desc,
-              })
-              dispatchNewTodo({
-                type: "reset"
-              });
+              if (newTodo.title !== "") {
+                dispatchTodo({
+                  type: "added",
+                  title: newTodo.title,
+                  desc: newTodo.desc,
+                })
+                dispatchNewTodo({
+                  type: "reset"
+                });
+              }
             }
           }}
         />
@@ -81,6 +85,7 @@ export function AddTodo() {
               type: "reset"
             });
           }
+          // fix: display error when user attempts to add todo without a title
           // else {
           //   dispatchTodo({
           //     type: "error",
