@@ -40,7 +40,7 @@
   min-height: 20px;
   width: 20px;
   height: 20px;
-  accent-color: #777;
+  accent-color: #aaa;
 }
 
 .todo__title {
@@ -57,7 +57,7 @@
 
 .checked {
   text-decoration: line-through;
-  color: #777;
+  color: #aaa;
 }
 
 /* Buttons */
