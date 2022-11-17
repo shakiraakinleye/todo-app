@@ -1,4 +1,4 @@
-import "./styles/input.css";
+import "./styles/Input.css";
 
 export function Input({
   fieldClass = "",

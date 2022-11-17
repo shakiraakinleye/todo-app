@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Todo } from "./Todo"
 import {TodoListContext} from "../TodoContext"
-import "./styles/todoList.css";
+import "./styles/TodoList.css";
 
 export function TodoList() {
   function List() {

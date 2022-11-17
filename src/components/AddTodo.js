@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { NewTodoContext, NewTodoDispatchContext, TodoDispatchContext } from "../TodoContext";
 import { Input } from "./Input";
 import { Button } from "./Button";
-import "./styles/addTodo.css";
+import "./styles/AddTodo.css";
 
 export function AddTodo() {
   const dispatchTodo = useContext(TodoDispatchContext);
@@ -47,14 +47,22 @@ export function AddTodo() {
         buttonClass={"btn--add__todo"}
         buttonText={"Add Todo"}
         onClick={() => {
-          dispatchTodo({
-            type: "added",
-            title: newTodo.title,
-            desc: newTodo.desc,
-          })
-          dispatchNewTodo({
-            type: "reset"
-          });
+          if (newTodo.title !== "") {
+            dispatchTodo({
+              type: "added",
+              title: newTodo.title,
+              desc: newTodo.desc,
+            })
+            dispatchNewTodo({
+              type: "reset"
+            });
+          }
+          // else {
+          //   dispatchTodo({
+          //     type: "error",
+          //     err: "No title added",
+          //   })
+          // }
         }}
       />
     </div>
