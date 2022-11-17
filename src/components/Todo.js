@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import {TodoDispatchContext} from "../TodoContext"
 import { Input } from "./Input";
 import { Button } from "./Button";
-import "./styles/todo.css"
+import "./styles/Todo.css"
 
 export function Todo({
   todo
@@ -13,6 +13,7 @@ export function Todo({
   let todoDisplay = isEditing ? (
     <div className="edit__todo">
       <Input
+        inputClass="edit__todo__input"
         value={todo.title}
         onChange={(e) =>
           dispatchTodo({
@@ -26,6 +27,7 @@ export function Todo({
         }
       />
       <Input
+        inputClass="edit__todo__input"
         value={todo.desc}
         onChange={(e) =>
           dispatchTodo({

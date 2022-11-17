@@ -10,11 +10,17 @@
 .edit__todo, .todo {
   display: flex;
   gap: 4px;
+  width: 70%;
   max-width: 70%;
+  word-break: break-word;
 } 
 
 .edit__todo {
   flex-direction: column;
+}
+
+.edit__todo__input {
+  width: 70%;
 }
 
 .todo {
@@ -28,10 +34,10 @@
   max-width: 100%;
 } 
 
-/* hsjbdugfsgunxnjxjjzjjzjjzjzjjzj/jbbhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh */
-/* Fix overflowing title and desc */
-/* fix checkbox size when title and desc overflows */
+
 .todo__checkbox {
+  min-width: 20px;
+  min-height: 20px;
   width: 20px;
   height: 20px;
 }
