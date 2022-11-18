@@ -47,7 +47,7 @@ export function AddTodo() {
           labelText={"Description"}
           inputClass={"new__todo__input"}
           inputId={"new__todo__desc"}
-          inputHint={"Type a description"}
+          inputHint={"Type an description(optional)"}
           value={newTodo.desc}
           onChange={(e) => {
             dispatchNewTodo({

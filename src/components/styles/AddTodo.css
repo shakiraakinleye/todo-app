@@ -35,6 +35,10 @@
   width: 66.6%;
 }
 
+.new__todo__input::placeholder {
+  font-style: italic;
+}
+
 .btn--add__todo {
   color: #fff;
   background: #ff9900;
