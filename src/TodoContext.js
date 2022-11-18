@@ -1,18 +1,15 @@
 import { createContext, useReducer } from "react";
+import {updateStorage} from "./TodoStorage"
 
 let nextId = 3;
 
 const initialTodo = {
     title: "",
     desc: "",
-  };
-  
-const initialList = [
-    { id: 0, title: "Wash car", desc: "Have the engine cleaned", done: false },
-    { id: 1, title: "Hair Salon", desc: "Make braids", done: true },
-    { id: 2, title: "Grocery shopping", desc: "Get greek yogurt", done: false },
-];
-  
+};
+
+const todoListJSON = localStorage.getItem("todoList")
+const initialList = JSON.parse(todoListJSON)  
 
 export const NewTodoContext = createContext(null)
 export const TodoListContext = createContext(null)
@@ -40,7 +37,7 @@ export function TodoProvider ({children}){
 export function TodoReducer(todoList, action){
     switch(action.type) {
         case "added" : {
-            return [
+            const updatedList =   [
                 ...todoList,
                 {
                     id: nextId++,
@@ -49,20 +46,24 @@ export function TodoReducer(todoList, action){
                     done: false
                 }
             ]
+            updateStorage(updatedList);
+            return [...updatedList]
         }
         case "edited" : {
-            return (
-                todoList.map((todo) => {
-                  if (todo.id === action.id) {
-                    return action.todo;
-                  } else {
-                    return todo;
-                  }
-                })
-            )
+            const updatedList = todoList.map((todo) => {
+                if (todo.id === action.id) {
+                  return action.todo;
+                } else {
+                  return todo;
+                }
+            })
+            updateStorage(updatedList);
+            return updatedList
         }
         case "deleted" : {
-            return todoList.filter((todo) => todo.id !== action.id)
+            const updatedList = todoList.filter((todo) => todo.id !== action.id);
+            updateStorage(updatedList);
+            return updatedList;
         }
         default : {
             throw Error(`${action.type} is not a valid action`)
