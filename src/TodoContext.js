@@ -8,8 +8,13 @@ const initialTodo = {
     desc: "",
 };
 
-const todoListJSON = localStorage.getItem("todoList")
-const initialList = JSON.parse(todoListJSON)  
+// const todoListJSON = localStorage.getItem("todoList")
+// const initialList = JSON.parse(todoListJSON)  
+const initialList = [
+    { id: 0, title: "Wash car", desc: "Have the engine cleaned", done: false },
+    { id: 1, title: "Hair Salon", desc: "Make braids", done: true },
+    { id: 2, title: "Grocery shopping", desc: "Get greek yogurt", done: false },
+];
 
 export const NewTodoContext = createContext(null)
 export const TodoListContext = createContext(null)
