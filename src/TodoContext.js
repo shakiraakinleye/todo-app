@@ -1,20 +1,24 @@
 import { createContext, useReducer } from "react";
-import {updateStorage} from "./TodoStorage"
+import {updateStorage, updateNextId} from "./TodoStorage"
 
-let nextId = 3;
 
 const initialTodo = {
     title: "",
     desc: "",
 };
 
-// const todoListJSON = localStorage.getItem("todoList")
-// const initialList = JSON.parse(todoListJSON)  
-const initialList = [
-    { id: 0, title: "Wash car", desc: "Have the engine cleaned", done: false },
-    { id: 1, title: "Hair Salon", desc: "Make braids", done: true },
-    { id: 2, title: "Grocery shopping", desc: "Get greek yogurt", done: false },
-];
+function initList(){
+    const mockList = [{ id: 0, title: "Grocery shopping", desc: "Get greek yogurt", done: true }]
+    const mockListJSON = JSON.stringify(mockList)
+
+    if (localStorage.getItem("todoList") === null) {
+        localStorage.setItem("todoList", mockListJSON)
+    }
+    const todoListJSON = localStorage.getItem("todoList")
+    const initialList = JSON.parse(todoListJSON);
+    return initialList;
+}
+
 
 export const NewTodoContext = createContext(null)
 export const TodoListContext = createContext(null)
@@ -23,7 +27,7 @@ export const NewTodoDispatchContext = createContext(null)
 
 
 export function TodoProvider ({children}){
-    const [todoList, dispatchTodo] = useReducer(TodoReducer, initialList);
+    const [todoList, dispatchTodo] = useReducer(TodoReducer, initList());
   const [newTodo, dispatchNewTodo] = useReducer(NewTodoReducer, initialTodo);
     return(
         <TodoListContext.Provider value={todoList}>
@@ -45,7 +49,7 @@ export function TodoReducer(todoList, action){
             const updatedList =   [
                 ...todoList,
                 {
-                    id: nextId++,
+                    id: updateNextId(),
                     title: action.title,
                     desc: action.desc,
                     done: false
