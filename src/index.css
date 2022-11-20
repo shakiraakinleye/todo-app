@@ -24,7 +24,7 @@ a, button	{
 }
 
 a:focus, button:focus	{
-	outline: 0;
+	outline: none;
 }
 
 body {
